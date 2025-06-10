@@ -12,7 +12,7 @@ interface inputProps {
 
 const Input = ({title, setter, val}: inputProps): ReactNode => {
     const [focus, setFocus] = useState(false);
-    return <div className={'flex flex-row p-2 gap-2 group'}>
+    return <div className={'flex flex-row p-2 gap-2 group '}>
         <div>{title}:</div>
         <div className={'flex flex-col'}>
             <input className='appearance-none focus:ring-0 focus:outline-none'
@@ -24,7 +24,7 @@ const Input = ({title, setter, val}: inputProps): ReactNode => {
                    value={val}
             />
             <div
-                className={`bg-white ${focus ? 'w-full' : 'w-0 group-hover:w-full'} transition-all duration-200 ease-in-out h-1 rounded-xl`}/>
+                className={`bg-black ${focus ? 'w-full' : 'w-0 group-hover:w-full'} transition-all duration-200 ease-in-out h-1 rounded-xl`}/>
         </div>
     </div>
 }
@@ -52,30 +52,35 @@ const Home = () => {
     }, [long, lat])
     console.log(weather)
 
-    return <div className={'flex flex-col items-center justify-center p-10 h-screen'}>
-        {/*<div>long:<input onChange={(e) => setLong(e.target.value)}/></div>*/}
-        <Input
-            title={'long'}
-            setter={(e: string) => setLong(e)}
-            val={long}
-        />
-        <Input
-            title={'lat'}
-            setter={(e: string) => setLat(e)}
-            val={lat}
-        />
+    return <div className={'flex items-center justify-center p-10 h-screen'}>
+        <div className={'flex flex-col bg-white text-black rounded-xl p-10'}>
+            {/*<div>long:<input onChange={(e) => setLong(e.target.value)}/></div>*/}
+            <div className={'flex flex-col items-end'}>
+                <Input
+                    title={'long'}
+                    setter={(e: string) => setLong(e)}
+                    val={long}
+                />
+                <Input
+                    title={'lat'}
+                    setter={(e: string) => setLat(e)}
+                    val={lat}
+                />
+            </div>
 
-        <div className={'h-50'}>
-            {isLoading ? <div className={'p-5'}>your weather is loading...</div> :
-                <div className={'flex flex-col space-y-5 p-5 justify-center'}>
-                    <p>Your Weather Report</p>
-                    <div className={'flex flex-row gap-1 items-center'}><Thermometer/> temp:{weather.temperature_2m}
+            <div className={'h-auto transition-all ease-in-out duration-300'}>
+                {isLoading ? <div className={'p-5'}>your weather is loading...</div> :
+                    <div className={'flex flex-col space-y-5 p-5 justify-center'}>
+                        <p>Your Weather Report</p>
+                        <div className={'flex flex-row gap-1 items-center'}><Thermometer/> temp:{weather.temperature_2m}
+                        </div>
+                        <div className={'flex flex-row gap-1 items-center'}><CloudRain/> % rain
+                            :{weather.precipitation_probability}</div>
+                        <div className={'flex flex-row gap-1 items-center'}><Haze/> humidity :{weather.temperature_2m}
+                        </div>
                     </div>
-                    <div className={'flex flex-row gap-1 items-center'}><CloudRain/> % rain
-                        :{weather.precipitation_probability}</div>
-                    <div className={'flex flex-row gap-1 items-center'}><Haze/> humidity :{weather.temperature_2m}</div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
 }
