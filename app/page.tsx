@@ -72,11 +72,12 @@ const Home = () => {
                 {isLoading ? <div className={'p-5'}>your weather is loading...</div> :
                     <div className={'flex flex-col space-y-5 p-5 justify-center'}>
                         <p>Your Weather Report</p>
-                        <div className={'flex flex-row gap-1 items-center'}><Thermometer/> temp:{weather.temperature_2m}
+                        <div className={'flex flex-row gap-1 items-center'}>
+                            <Thermometer/> temp: {weather.temperature_2m}
                         </div>
                         <div className={'flex flex-row gap-1 items-center'}><CloudRain/> % rain
-                            :{weather.precipitation_probability}</div>
-                        <div className={'flex flex-row gap-1 items-center'}><Haze/> humidity :{weather.temperature_2m}
+                            : {weather.precipitation_probability}</div>
+                        <div className={'flex flex-row gap-1 items-center'}><Haze/> humidity : {weather.temperature_2m}
                         </div>
                     </div>
                 }
